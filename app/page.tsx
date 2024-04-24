@@ -20,23 +20,26 @@ export default function Home() {
   // states
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
   const [formData, setFormData] = useState({
-    name: '',
+    title: '',
     description: '',
     color: '',
     favorite: false
   })
 
-  const handleFormdataChange = (e: ChangeEvent<HTMLInputElement> | CheckboxChangeEvent) => {
+  const handleFormdataChange = (e: ChangeEvent<HTMLInputElement>) => {
     
     // if(instanceof e == ChangeEvent<HTMLInputElement>){
     //   console.log(e.target)
     // }
     // console.log(e.target)
-    const {name, value, checked} = e.target
+    // const {name, value, checked} = e.target
+
+    const {name, value, checked}   = e.target
+    console.log(name)
 
     setFormData(prevFormData => ({
       ...prevFormData,
-      [name]: value ? value : checked
+      [name]: checked ? checked : value
     }))
 
     console.log(formData)
@@ -78,9 +81,11 @@ export default function Home() {
           </div>
         </CustomModal> */}
         <BasicModal>
-          <TextField placeholder="Name" name = 'name' value = {formData.name} onChange={(e: ChangeEvent<HTMLInputElement>) => handleFormdataChange(e)}/>
+          <TextField placeholder="Name" name = 'title' value = {formData.title} onChange={(e: ChangeEvent<HTMLInputElement>) => handleFormdataChange(e)}/>
           <TextField placeholder="Description" name = 'description' value = {formData.description} onChange={(e: ChangeEvent<HTMLInputElement>) => handleFormdataChange(e)}/>
-          <Checkbox name = 'favorite' checked = {formData.favorite} onChange={(e: CheckboxChangeEvent) => handleFormdataChange(e)}>Favorite</Checkbox>
+          {/* <Checkbox name = 'favorite' checked = {formData.favorite} onChange={(e: CheckboxChangeEvent) => handleFormdataChange(e)}>Favorite</Checkbox> */}
+          <input type="checkbox" name = "favorite" checked = {formData.favorite} onChange={(e: ChangeEvent<HTMLInputElement>) => handleFormdataChange(e)} />
+          <label htmlFor = "favorite">Favorite</label>
           <input type="color" name = "color" defaultValue="rgb(97, 48, 153, 1)" onChange={(e: ChangeEvent<HTMLInputElement>) => handleFormdataChange(e)}/>   
         </BasicModal>
       </div>

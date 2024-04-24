@@ -21,11 +21,11 @@ export  async function create(){
 
 export async function createNotebook(data:Notebook){
     const client = await db.connect()
-    const {id, name, description, color, favorite} = data
+    const {id, title, description, color, favorite} = data
  
     try{
         await client.sql `CREATE TABLE IF NOT EXISTS Notebooks(ID varchar(255) PRIMARY KEY, Name varchar(255), Description varchar(255), Color varchar(255), Favorite BOOLEAN)`
-        const res = await client.sql `INSERT INTO Notebooks (ID, Name, Description, Color, Favorite) VALUES (${id},${name},${description},${color},${favorite})`
+        const res = await client.sql `INSERT INTO Notebooks (ID, Name, Description, Color, Favorite) VALUES (${id},${title},${description},${color},${favorite})`
         return res.rows 
     }catch(err){
         console.log(err)

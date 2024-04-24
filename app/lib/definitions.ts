@@ -1,6 +1,6 @@
 export type Notebook = {
     id: string;
-    name: string;
+    title: string;
     description: string;
     color: string;
     favorite: boolean;
